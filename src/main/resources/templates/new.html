@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h2>Add a reservation</h2>
+	<form action="#" th:action="@{new}" th:object="${reservation}" method = post>
+		<p>
+			Name: <input type="text" th:field="*{name}"/>
+		</p>
+		<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect data</p>
+		<p>
+			E-mail: <input type="text" th:field="*{email}"/>
+		</p>
+		<p>
+			Age: <input type="text" th:field="*{age}"/>
+		</p>
+		<p th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Incorrect data</p>
+		<button type="submit">Crea reserva</button>
+	</form>
+	<a href="/">Go back to the main page</a>
+	
+</body>
+</html>

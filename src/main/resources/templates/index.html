@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h2>Your reservations list</h2>
+	<div th:unless ="${#lists.isEmpty(reservations)}">
+		<dl th:each="reservation :  ${reservations}">
+			<dt class="bookHeadline">
+			<span th:text ="${reservation.name}">Name</span>(age: 
+			<span th:text="${reservation.age}"></span>) from 
+			<span th:text="${reservation.email}">Author</span>
+			</dt>
+		</dl>
+		<a href="/new">Nueva reserva</a>
+	</div>
+</body>
+</html>
