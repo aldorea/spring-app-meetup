@@ -17,7 +17,7 @@ public class ReservationValidator implements Validator {
 		Reservation reservation = (Reservation) target;
 		
 		if(reservation.getEmail().endsWith("uv.es") && reservation.getAge() > 24)
-			errors.rejectValue("age", "age.uv.old");
+			errors.rejectValue("age", "age.uv.old", new Object[] {reservation.getAge()}, "Too old for the UV domain");
 	}
 
 }

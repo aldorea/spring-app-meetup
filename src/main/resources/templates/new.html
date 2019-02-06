@@ -14,6 +14,7 @@
 		<p>
 			E-mail: <input type="text" th:field="*{email}"/>
 		</p>
+		<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Incorrect data</p>
 		<p>
 			Age: <input type="text" th:field="*{age}"/>
 		</p>

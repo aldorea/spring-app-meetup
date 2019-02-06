@@ -22,7 +22,6 @@ public class HomeController {
 		
 		List<Reservation> reservations = reservationService.getReservations();
 		model.addAttribute("reservations", reservations);
-		return "index";
-		
+		return "index";	
 	}
 }

@@ -13,7 +13,7 @@ public class Reservation {
 	private String name;
 	
 	@NotNull
-	@Email
+	@Email(message="{mi.mensaje}")
 	private String email;
 	
 	@NotNull

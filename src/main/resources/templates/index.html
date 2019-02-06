@@ -5,7 +5,7 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<h2>Your reservations list</h2>
+	<h2 th:text="#{app.welcome}">Your reservations list</h2>
 	<div th:unless ="${#lists.isEmpty(reservations)}">
 		<dl th:each="reservation :  ${reservations}">
 			<dt class="bookHeadline">

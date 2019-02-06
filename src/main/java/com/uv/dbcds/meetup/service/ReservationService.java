@@ -1,7 +1,10 @@
 package com.uv.dbcds.meetup.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -23,6 +26,15 @@ public class ReservationService {
 	
 	public void make(Reservation  reservation) {
 		reservations.add(reservation);
+	}
+	
+	public List<Reservation> deleteReservation(String email) {
+		Reservation reservation = reservations.stream()
+												.filter(r -> r.getEmail().equals(email))
+												.findFirst()
+												.get();
+		reservations.remove(reservation);
+		return reservations;
 	}
 	
 }
