@@ -26,7 +26,7 @@ public class ReservationService {
 		return capacity;
 	}
 	
-	public void modifyCapacity(boolean aforo) {
+	public void modifyCapacity(boolean capacity) {
 		this.capacity = capacity;
 	}
 	
