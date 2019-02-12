@@ -3,9 +3,7 @@ package com.uv.dbcds.meetup.web;
 import java.util.List;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,19 +22,15 @@ import com.uv.dbcds.meetup.service.ReservationService;
 @RequestMapping("/new")
 public class NewController {
 	
-	@Autowired
 	private ReservationService reservationService;
-	
-	@Autowired
 	private ReservationValidator reservationValidator;
+
+	public NewController(ReservationService reservationService, ReservationValidator reservationValidator) {
+		super();
+		this.reservationService = reservationService;
+		this.reservationValidator = reservationValidator;
+	}
 	
-//	public NewController(ReservationService reservationService,
-//			ReservationValidator reservationValidator) {
-//		super();
-//		this.reservationService = reservationService;
-//		this.reservationValidator = reservationValidator;
-//	}
-//	
 	@GetMapping
 	public void setupForm(Model model) {
 		Reservation r = new Reservation();
@@ -58,10 +52,5 @@ public class NewController {
 		reservationService.make(reservation);
 		return "redirect:/";
 	}
-	@RequestMapping(value="/delete/{email}", method = RequestMethod.GET)
-	public String delete(@PathParam("email") String email, Model model) {
-		List<Reservation> reservations = reservationService.deleteReservation(email);
-		model.addAttribute("reservations", reservations);
-		return "index";
-	}
+	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.uv.dbcds.meetup.domain.Reservation;
@@ -23,5 +24,13 @@ public class HomeController {
 		List<Reservation> reservations = reservationService.getReservations();
 		model.addAttribute("reservations", reservations);
 		return "index";	
+	}
+	
+	@RequestMapping("/{email}")
+	public String deleteReservation(Model model, @PathVariable String email){
+		reservationService.deleteReservation(email);
+		List<Reservation> reservations = reservationService.getReservations();
+		model.addAttribute("reservations", reservations);
+		return "index";
 	}
 }

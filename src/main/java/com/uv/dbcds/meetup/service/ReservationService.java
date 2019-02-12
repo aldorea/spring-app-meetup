@@ -1,10 +1,7 @@
 package com.uv.dbcds.meetup.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -14,6 +11,7 @@ import com.uv.dbcds.meetup.domain.Reservation;
 public class ReservationService {
 
 	private final List<Reservation> reservations = new ArrayList<>();
+	private boolean capacity;
 	
 	public ReservationService() {
 		reservations.add(new Reservation("Fran", "grimaldo@uv.es", 40));
@@ -24,17 +22,29 @@ public class ReservationService {
 		return reservations;
 	}
 	
-	public void make(Reservation  reservation) {
-		reservations.add(reservation);
+	public boolean checkCapacity() {
+		return capacity;
 	}
 	
-	public List<Reservation> deleteReservation(String email) {
-		Reservation reservation = reservations.stream()
-												.filter(r -> r.getEmail().equals(email))
-												.findFirst()
-												.get();
-		reservations.remove(reservation);
-		return reservations;
+	public void modifyCapacity(boolean aforo) {
+		this.capacity = capacity;
+	}
+	
+	public void make(Reservation reservation) {
+		if (reservations.size() <= 20) {
+			reservations.add(reservation);
+		} else {
+			this.capacity = false;
+		}
+	}
+	
+	public String deleteReservation(String email) {
+		for (Reservation reservation : reservations) {
+			if (reservation.getEmail().equals(email)) {
+				reservations.remove(email);
+			}
+		}
+		return "redirect:/";
 	}
 	
 }
